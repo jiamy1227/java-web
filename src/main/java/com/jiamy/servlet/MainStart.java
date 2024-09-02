@@ -9,6 +9,9 @@ import org.apache.catalina.webresources.StandardRoot;
 
 import java.io.File;
 
+/**
+ * 启动嵌入式tomcat服务器
+ */
 public class MainStart {
     public static void main(String[] args) throws LifecycleException {
         Tomcat tomcat = new Tomcat();
