@@ -12,7 +12,7 @@ public class LogFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("LogFilter: process "+ ((HttpServletRequest) servletRequest).getRequestURI());
+        // System.out.println("LogFilter: process "+ ((HttpServletRequest) servletRequest).getRequestURI());
         filterChain.doFilter(servletRequest,servletResponse);
     }
 }

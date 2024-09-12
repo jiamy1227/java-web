@@ -1,4 +1,4 @@
-<%@ page import="com.jiamy.servlet.jsp.User" %><%--
+<%@ page import="com.jiamy.mvc.dto.User" %><%--
   Created by IntelliJ IDEA.
   User: 10494
   Date: 2024/9/1
@@ -12,7 +12,8 @@
 </head>
 <body>
 <% User user = (User) request.getAttribute("user");%>
-UserName: <% out.print(user.getName()); %>
+UserName: <% out.print(user.getId()); %>
+UserId: <% out.print(user.getName()); %>
 UserAge: <% out.print(user.getAge()); %>
 </body>
 </html>

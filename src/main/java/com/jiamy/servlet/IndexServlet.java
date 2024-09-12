@@ -9,8 +9,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(urlPatterns = "/")
+//@WebServlet(urlPatterns = "/")
 public class IndexServlet extends HttpServlet {
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // 从HttpSession获取当前用户名:
         String user = (String) req.getSession().getAttribute("user");

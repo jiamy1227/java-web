@@ -47,4 +47,36 @@ public class GetDispatcher {
         String s = request.getParameter(name);
         return s == null ? defaultValue : s;
     }
+
+    public Object getInstance() {
+        return instance;
+    }
+
+    public void setInstance(Object instance) {
+        this.instance = instance;
+    }
+
+    public Method getMethod() {
+        return method;
+    }
+
+    public void setMethod(Method method) {
+        this.method = method;
+    }
+
+    public String[] getParameterNames() {
+        return parameterNames;
+    }
+
+    public void setParameterNames(String[] parameterNames) {
+        this.parameterNames = parameterNames;
+    }
+
+    public Class<?>[] getParameterClasses() {
+        return parameterClasses;
+    }
+
+    public void setParameterClasses(Class<?>[] parameterClasses) {
+        this.parameterClasses = parameterClasses;
+    }
 }
