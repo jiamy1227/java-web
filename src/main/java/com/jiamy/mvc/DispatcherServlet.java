@@ -24,13 +24,16 @@ import java.util.Map;
 public class DispatcherServlet extends HttpServlet {
 
     // 实现个体请求映射
-    private Map<String, GetDispatcher> getDispatcherMap = new HashMap<>();
+    private final Map<String, GetDispatcher> getDispatcherMap = new HashMap<>();
+
+    private ViewEngine viewEngine;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (getDispatcherMap.containsKey(req.getRequestURI())){
             try {
-                getDispatcherMap.get(req.getRequestURI()).invoke(req ,resp);
+                ModelAndView modelAndView = getDispatcherMap.get(req.getRequestURI()).invoke(req ,resp);
+                this.viewEngine.render(modelAndView, resp.getWriter(), req, resp);
             } catch (InvocationTargetException e) {
                 throw new RuntimeException(e);
             } catch (IllegalAccessException e) {
@@ -62,7 +65,7 @@ public class DispatcherServlet extends HttpServlet {
                                     GetDispatcher getDispatcher = new GetDispatcher();
                                     getDispatcher.setMethod(method);
                                     getDispatcher.setInstance(clazz.getDeclaredConstructor().newInstance());
-                                    // fixme: 参数没有传到controller
+                                    // java编译时，形参名称不会被编译进去，默认会用arg0,arg1代替，须通过maven编译插件，或者idea的编译配置设定
                                     Parameter[] parameters = method.getParameters();
                                     String[] paramNames = new String[parameters.length];
                                     for(int i=0;i<parameters.length;i++) {
@@ -91,6 +94,7 @@ public class DispatcherServlet extends HttpServlet {
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         }
-
+        // 初始化模板引擎
+        viewEngine = new ViewEngine(getServletContext());
     }
 }

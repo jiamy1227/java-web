@@ -17,15 +17,16 @@ public class UserController {
         user.setName(userName);
         user.setAge(30);
 
-        return new ModelAndView().setView("/user/info").addModel("user", user);
+        return new ModelAndView().setView("/user").addModel("user", user);
     }
 
     @GetMapping("/user/getById")
     public ModelAndView getById(String userId){
         User user = new User();
-        user.setId("userId");
+        user.setId(userId);
+        user.setName("张三");
         user.setAge(30);
 
-        return new ModelAndView().setView("/user/info").addModel("user", user);
+        return new ModelAndView().setView("/user").addModel("user", user);
     }
 }
