@@ -1,4 +1,4 @@
-package com.jiamy.servlet;
+package com.jiamy;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.LifecycleException;
